@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./cmds-base.css">
+ 
+    <title>Document</title>
+<style>
+      @font-face {
+    font-family: Gilroy;
+    font-weight: 400;
+    src:
+    url('https://cm-marketing.directus.app/assets/1995f55d-4c20-43e9-bc2e-ef3b529a560e?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('woff');
+  }
+  
+  @font-face {
+    font-family: Gilroy;
+    font-weight: 500;
+    src:
+    url('https://cm-marketing.directus.app/assets/7d6f602f-5c6f-4c09-8e70-1feb9ab50f49?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('woff');
+  }
+    
+  @font-face {
+    font-family: Gilroy;
+    font-weight: 700;
+    src:
+    url('https://cm-marketing.directus.app/assets/b83d2dc4-5a3d-4517-b367-fde7b500f806?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('woff');
+  }
+    
+  @font-face {
+    font-family: "Suisse Int'l";
+    font-weight: 300;
+    src:
+    url('https://cm-marketing.directus.app/assets/c1b4f252-c4ec-48b9-aca4-ce1104ec65eb?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('woff');
+  }
+      
+  @font-face {
+    font-family: "Suisse Int'l";
+    font-weight: 400;
+    src:
+    url('https://cm-marketing.directus.app/assets/db654fed-0e8c-49de-8bfb-44a608c1439a?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('woff');
+  }
+        
+  @font-face {
+    font-family: "Suisse Int'l";
+    font-weight: 500;
+    src:
+    url('https://cm-marketing.directus.app/assets/f649b245-02d8-4d3f-a9e0-67db661bc30c?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('woff');
+  }
+            
+  @font-face {
+    font-family: "Suisse Int'l";
+    font-weight: 600;
+    src:
+    url('https://cm-marketing.directus.app/assets/af841673-0e81-4887-b8a8-cf995d6d8a7f?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('woff');
+  }
+
+  @font-face {
+    font-family: "Jakarta";
+    font-weight: 200;
+    src:
+    url('https://cm-marketing.directus.app/assets/09407b76-02d2-4f3c-9e53-918c4a04f435?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('ttf');
+  }
+
+  @font-face {
+    font-family: "Jakarta";
+    font-weight: 300;
+    src:
+    url('https://cm-marketing.directus.app/assets/2b4eb66c-d4c1-4ce8-9886-068df86285b6?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('ttf');
+  }
+
+  @font-face {
+    font-family: "Jakarta";
+    font-weight: 400;
+    src:
+    url('https://cm-marketing.directus.app/assets/478d158c-55fe-4e97-abbc-853ccee06884?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('ttf');
+  }
+
+  @font-face {
+    font-family: "Jakarta";
+    font-weight: 500;
+    src:
+    url('https://cm-marketing.directus.app/assets/4c781dca-7f02-431f-a7c2-c306888dca42?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('ttf');
+  }
+
+  @font-face {
+    font-family: "Jakarta";
+    font-weight: 600;
+    src:
+    url('https://cm-marketing.directus.app/assets/68440401-cc13-4c46-96d3-7ed42cc83d2a?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('ttf');
+  }
+
+  @font-face {
+    font-family: "Jakarta";
+    font-weight: 700;
+    src:
+    url('https://cm-marketing.directus.app/assets/7072d9ca-b252-41ea-8350-59e4ef0d177f?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('ttf');
+  }
+
+  @font-face {
+    font-family: "Jakarta";
+    font-weight: 800;
+    src:
+    url('https://cm-marketing.directus.app/assets/a3c9db11-18b5-48fa-a3e8-cd7b068026bd?access_token=dWRNLjvOuHuIQ4t6NQAoB6KSSKkm5xfl') format('ttf');
+  }
+  :root {
+  --color-primary: 221 100% 31%;
+  --color-primary-light: 218 100% 53%;
+  --color-primary-dark: 221 100% 25%;
+  --color-primary-ultralight: 221 100% 92%;
+  --color-primary-ultradark: 225 100% 20%;
+  --color-primary-faded: 218 100% 81%;
+  --color-secondary: 196 100% 44%;
+  --color-secondary-faded: 196 78% 72%;
+  --color-tertiary: 26 34% 72%;
+  --color-background-lightblue: 218 100% 97%;
+  --color-background-paper: 0 0% 99%;
+  --color-alternative-pardo: 35 28% 41%;
+  --color-alternative-gold: 25 34% 51%;
+  --color-alternative-darkorange: 18 53% 45%;
+  --color-alternative-lightorange: 42 66 66%;
+  --color-alternative-prefermemberBlue: 212 81% 14%;
+  --color-system-warning: 44 100% 59%;
+  --color-system-warning-faded: 44 100% 92%;
+  --color-system-error: 360 70% 49%;
+  --color-system-error-faded: 0 100% 97%;
+  --color-system-success: 147 83% 27%;
+  --color-system-success-faded: 146 31% 85%;
+  --color-grey-800: 0 0% 7%;
+  --color-grey-700: 0 0% 40%;
+  --color-grey-600: 0 0% 40%;
+  --color-grey-500: 0 0% 60%;
+  --color-grey-400: 240 1% 67%;
+  --color-grey-300: 40 4% 85%;
+  --color-grey-200: 40 4% 85%;
+  --color-grey-100: 60 3% 94%;
+  --color-grey-75: 60 8% 97%;
+  --color-grey-50: 60 8% 97%;
+  --color-common-black: 0 0% 0%;
+  --color-common-white: 0 0% 100%;
+  --color-status-member: 221 100% 31%;
+  --color-status-silver: 219 88% 20%;
+  --color-status-gold: 36 32% 42%;
+  --color-status-platinum: 0 0% 40%;
+  --color-status-presidential: 0 0% 7%;
+  --spacing-minimal: 0.5rem;
+  --spacing-tiny: 1rem;
+  --spacing-petit: 1.5rem;
+  --spacing-normal: 2rem;
+  --spacing-roomy: clamp(
+    2rem,
+    (100vw - 599px) * 99,
+    clamp(
+      2.5rem,
+      (100vw - 959px) * 99,
+      clamp(3rem, (100vw - 1367px) * 99, 3.5rem)
+    )
+  );
+  --spacing-spacious: clamp(
+    2.5rem,
+    (100vw - 599px) * 99,
+    clamp(
+      3rem,
+      (100vw - 959px) * 99,
+      clamp(3.5rem, (100vw - 1367px) * 99, 4rem)
+    )
+  );
+  --spacing-big: clamp(
+    3.5rem,
+    (100vw - 599px) * 99,
+    clamp(
+      4rem,
+      (100vw - 959px) * 99,
+      clamp(4.5rem, (100vw - 1367px) * 99, 5rem)
+    )
+  );
+  --spacing-huge: clamp(
+    4.5rem,
+    (100vw - 599px) * 99,
+    clamp(
+      5.5rem,
+      (100vw - 959px) * 99,
+      clamp(6rem, (100vw - 1367px) * 99, 7rem)
+    )
+  );
+  --grid-gutter: clamp(1rem, (100vw - 959px) * 99, 1.5rem);
+  --line-height-u6: clamp(
+    2.5rem,
+    (100vw - 599px) * 99,
+    clamp(
+      4rem,
+      (100vw - 959px) * 99,
+      clamp(4.5rem, (100vw - 1367px) * 99, 5rem)
+    )
+  );
+  --line-height-u5: clamp(
+    2.5rem,
+    (100vw - 599px) * 99,
+    clamp(
+      3rem,
+      (100vw - 959px) * 99,
+      clamp(3.5rem, (100vw - 1367px) * 99, 4rem)
+    )
+  );
+  --line-height-u4: clamp(
+    2rem,
+    (100vw - 599px) * 99,
+    clamp(
+      2.5rem,
+      (100vw - 959px) * 99,
+      clamp(3rem, (100vw - 1367px) * 99, 4rem)
+    )
+  );
+  --line-height-u3: clamp(
+    2rem,
+    (100vw - 599px) * 99,
+    clamp(2.5rem, (100vw - 1367px) * 99, 3rem)
+  );
+  --line-height-u2: clamp(
+    1.5rem,
+    (100vw - 599px) * 99,
+    clamp(2rem, (100vw - 1367px) * 99, 2.5rem)
+  );
+  --line-height-u1: clamp(1.5rem, (100vw - 1367px) * 99, 2rem);
+  --line-height-b: 1.5rem;
+  --line-height-d1: 1.25rem;
+  --line-height-d2: 1rem;
+  --line-height-d3: 1rem;
+  --font-size-u6: clamp(
+    2.25rem,
+    (100vw - 599px) * 99,
+    clamp(
+      3.5rem,
+      (100vw - 959px) * 99,
+      clamp(4.125rem, (100vw - 1367px) * 99, 4.75rem)
+    )
+  );
+  --font-size-u5: clamp(
+    2rem,
+    (100vw - 599px) * 99,
+    clamp(
+      2.75rem,
+      (100vw - 959px) * 99,
+      clamp(3.25rem, (100vw - 1367px) * 99, 3.75rem)
+    )
+  );
+  --font-size-u4: clamp(
+    1.875rem,
+    (100vw - 599px) * 99,
+    clamp(
+      2.25rem,
+      (100vw - 959px) * 99,
+      clamp(2.5rem, (100vw - 1367px) * 99, 3rem)
+    )
+  );
+  --font-size-u3: clamp(
+    1.5rem,
+    (100vw - 599px) * 99,
+    clamp(
+      1.875rem,
+      (100vw - 959px) * 99,
+      clamp(2.25rem, (100vw - 1367px) * 99, 2.5rem)
+    )
+  );
+  --font-size-u2: clamp(
+    1.25rem,
+    (100vw - 599px) * 99,
+    clamp(
+      1.5rem,
+      (100vw - 959px) * 99,
+      clamp(1.75rem, (100vw - 1367px) * 99, 2rem)
+    )
+  );
+  --font-size-u1: clamp(1.125rem, (100vw - 1367px) * 99, 1.25rem);
+  --font-size-b: 1rem;
+  --font-size-d1: 0.875rem;
+  --font-size-d2: 0.75rem;
+  --font-size-d3: 0.75rem;
+  --letter-spacing-u6: clamp(
+    -0.08875rem,
+    (100vw - 599px) * 99,
+    clamp(
+      -0.138125rem,
+      (100vw - 959px) * 99,
+      clamp(-0.163125rem, (100vw - 1367px) * 99, -0.1875rem)
+    )
+  );
+  --letter-spacing-u5: clamp(
+    -0.083125rem,
+    (100vw - 599px) * 99,
+    clamp(
+      -0.114375rem,
+      (100vw - 959px) * 99,
+      clamp(-0.135625rem, (100vw - 1367px) * 99, -0.15625rem)
+    )
+  );
+  --letter-spacing-u4: clamp(
+    -0.078125rem,
+    (100vw - 599px) * 99,
+    clamp(
+      -0.09375rem,
+      (100vw - 959px) * 99,
+      clamp(-0.078125rem, (100vw - 1367px) * 99, -0.09375rem)
+    )
+  );
+  --letter-spacing-u3: clamp(
+    -0.046875rem,
+    (100vw - 599px) * 99,
+    clamp(
+      -0.05875rem,
+      (100vw - 959px) * 99,
+      clamp(-0.09375rem, (100vw - 1367px) * 99, -0.078125rem)
+    )
+  );
+  --letter-spacing-u2: clamp(
+    -0.063rem,
+    (100vw - 599px) * 99,
+    clamp(
+      -0.046875rem,
+      (100vw - 959px) * 99,
+      clamp(-0.055rem, (100vw - 1367px) * 99, -0.0625rem)
+    )
+  );
+  --letter-spacing-u1: 0rem;
+  --letter-spacing-b: 0rem;
+  --letter-spacing-d1: 0rem;
+  --letter-spacing-d2: 0.0625rem;
+  --letter-spacing-d3: 0rem;
+}
+
+</style>
+</head>
+
+<body>
+    <custom-fare lang="es" country="cr" campaign="24 Hours Sale" currency="convert" ></custom-fare>
+
+    <script src="../dist/assets/index-DwZZl3aq.js"></script>
+</body>
+</html>
+
+
+<script>
+  document.getElementById("customFare").innerHTML = `<custom-fare lang="es" country="${country}" campaign="24 Hours Sale" currency="convert"></custom-fare>`
+</script>
