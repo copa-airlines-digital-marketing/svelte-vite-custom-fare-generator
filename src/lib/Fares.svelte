@@ -1,5 +1,3 @@
-<svelte:options customElement="custom-fare" />
-
 <script lang="ts">
 	/** @type {import('./$types').PageData} */
 	import { onMount } from 'svelte';
@@ -40,6 +38,7 @@
 	
 	const conversionQuery = [
 		'rate',
+		'country',
 		'currency',
 	];
 
@@ -155,17 +154,15 @@ try {
 
 </script>
 
+
 <div class="container mx-auto">
 	{#if isLoading}
 	<ol class="grid justify-center gap-3" style="grid-template-columns: repeat(auto-fit, minmax(376px, 1fr))">
 	{#each Array(6) as _}
 		<div class="custom-fares h-full w-full max-w-[400px]">
 			<div
-				class="grid h-40 grid-cols-[8px_116px_auto_8px] grid-rows-[8px_auto_auto_8px] overflow-hidden rounded-2xl outline outline-1 outline-grey-300 animate-pulse"
-			>
-				<div
-					class="col-start-1 col-end-3 row-span-full h-full w-full bg-grey-300 object-cover"
-				></div>
+				class="grid h-40 grid-cols-[8px_116px_auto_8px] grid-rows-[8px_auto_auto_8px] overflow-hidden rounded-2xl outline outline-1 outline-grey-300 animate-pulse">
+				<div class="col-start-1 col-end-3 row-span-full h-full w-full bg-grey-300 object-cover"></div>
 
 				<div class="col-start-3 col-end-3 row-start-2 row-end-2 mx-2 mb-2 flex flex-col gap-1">
 					<div class="h-6 rounded-2xl bg-grey-300"></div>
@@ -194,8 +191,7 @@ try {
 						<img
 						class="col-start-1 col-end-3 row-span-full h-full w-full object-cover"
 						loading="lazy"
-						src="https://cm-marketing.directus.app/assets/{fare.destination
-						  .main_image}?access_token=2NYgIiKkCP6FNY4Jj31_h4d5VKkSSVbZ&format=auto&width=124&height=168"
+						src="https://www.copaair.com/promotions/airtrafix-pics/{fare.destination.iata_code}.jpg"
 						alt={fare.destination}
 						/>
          
@@ -256,13 +252,3 @@ try {
 		<p></p>
 	{/if}
 </div>
-
-
-
-<style>
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-</style>
