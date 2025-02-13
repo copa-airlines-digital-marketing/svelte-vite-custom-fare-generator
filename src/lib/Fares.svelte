@@ -4,10 +4,14 @@
 	import getDirectusInstance from './directus';
 	import { readItems } from '@directus/sdk';
   	import calendarIcon from './assets/icons/calendar-icon.svg'
-
+	
+	type ConversionRequest = {currency:string, rate:number}
+	type Conversion = Record<string,number>
 	let isLoading = true;
 	let error: string | null = null;
 	let fares: Fares[] = [];
+	let conversion:Conversion = {} 
+
 
 	export let lang ;
 	export let country;
@@ -17,7 +21,7 @@
 
 
 	const destinationQuery = [
-		{ country: [{ translations: ['name'] },{'exchange_rate': ['rate']},'currency_code'] },
+		{ country: [{ translations: ['name'] },'currency_code'] },
 		'iata_code',
 		'main_image',
 	
@@ -36,12 +40,6 @@
 		
 	];
 	
-	const conversionQuery = [
-		'rate',
-		'country',
-		'currency',
-	];
-
 	const translationFilter = {
 		translations: {
 			_filter: {
@@ -103,16 +101,21 @@
 		}
 	};
 
+	const allConversionquery = {
+		fields:["*"]
+	}
+
 	const directus = getDirectusInstance(fetch);
 
 
 onMount(async () => {
 try {
 
-  const [faresData] = await Promise.all([directus.request(readItems('custom_fare', query))]);
+  const [faresData, conversionsRequest ] = await Promise.all([directus.request(readItems('custom_fare', query)),directus.request(readItems('currency_conversion_rate', allConversionquery)) ]);
 
   fares = faresData as Fares[];
-
+  conversion = (conversionsRequest as ConversionRequest[]).reduce((a,c) => ({...a,[c.currency]:c.rate}),{});
+	
 
 
 
@@ -132,6 +135,7 @@ try {
 	}
 
 	function formatCurrency(price:number, currency:string){
+	
 		if(!price || !currency)
 		return price
 
@@ -146,9 +150,10 @@ try {
 		return currency.toUpperCase()
 	}
 
-	function getExchangeRate(currency:string, code:string, rate:number , storefront: string, price:number){
-		if(!storefront || !currency || !code || !rate || !validStorefronts.includes(storefront) || storefront==="gs" || currency!=="convert")
+	function getExchangeRate(currency:string, code:string, storefront: string, price:number){
+		if(!storefront || !currency || !code || !validStorefronts.includes(storefront) || storefront==="gs" || currency!=="convert")
 			return formatCurrency(Math.ceil(price), "USD")
+		const rate = conversion[code]
 		return formatCurrency(Math.ceil(price/rate), code)
 	}
 
@@ -178,6 +183,7 @@ try {
 	{:else if fares.length > 0}
 		<ol class="grid justify-center gap-3" style="grid-template-columns: repeat(auto-fit, minmax(376px, 1fr));">
 			{#each fares as fare}
+				{console.log(fare.origin)}
 				<li class="custom-fares h-full w-full max-w-[400px]">
 					<a class="grid grid-cols-[8px_116px_auto_8px] grid-rows-[8px_auto_auto_8px] overflow-hidden rounded-2xl outline outline-1 outline-grey-300 hover:outline-2 hover:outline-primary-ultralight focus:outline-2 focus:outline-primary-ultralight"
 						href="https://shopping.copaair.com/?roundtrip=true&adults=1&children=0&infants=0&sf={country}&langid={lang}&date1={fare.departure}&date2={fare.return}&promocode=&area1={fare.origin.iata_code}&area2={fare.destination.iata_code}&advanced_air_search=false&flexible_dates_v2=false&origin=EM"
@@ -192,7 +198,7 @@ try {
 						class="col-start-1 col-end-3 row-span-full h-full w-full object-cover"
 						loading="lazy"
 						src="https://www.copaair.com/promotions/airtrafix-pics/{fare.destination.iata_code}.jpg"
-						alt={fare.destination}
+						alt={fare.origin.translations[0]?.name}
 						/>
          
 						<span class="col-start-3 col-end-3 row-start-2 row-end-2 mx-2 mb-2 flex flex-col gap-1">
@@ -225,7 +231,7 @@ try {
 								{#if fare.price_before}
 									<span
 										class="font-normal text-d1 self-end font-suisse text-grey-600 line-through ">
-										{getCurrencyCode(country, fare.origin.country.currency_code)}&nbsp;{getExchangeRate(currency, fare.origin.country.currency_code,fare.origin.country.exchange_rate[0]?.rate, country, fare.price_before )}
+										{getCurrencyCode(country, fare.origin.country.currency_code)}&nbsp;{getExchangeRate(currency, fare.origin.country.currency_code, country, fare.price_before )}
 									</span>
 								{/if}
 								<span class="gap-y-2">
@@ -233,7 +239,7 @@ try {
 										{lang === 'es' ? 'desde' : lang === 'en' ? 'from' : 'de'}
 										<span
 											class="text-u2 font-gilroy font-bold text-primary lg:text-u1 ">
-											{getCurrencyCode(country, fare.origin.country.currency_code)}&nbsp;{getExchangeRate(currency, fare.origin.country.currency_code,fare.origin.country.exchange_rate[0]?.rate, country, fare.price )}<sup>*</sup>
+											{getCurrencyCode(country, fare.origin.country.currency_code)}&nbsp;{getExchangeRate(currency, fare.origin.country.currency_code,country, fare.price )}<sup>*</sup>
 										</span>
 									</span>
 								</span>
