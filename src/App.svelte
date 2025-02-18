@@ -19,6 +19,10 @@
 
 </script>
 
+
+
+
+
 {#each Object.keys(storefronts) as country }
   {#each storefronts[country] as lang}
       <div data-country={country} data-lang={lang} class="" > 
@@ -26,3 +30,6 @@
       </div>
   {/each}
 {/each} 
+
+
+

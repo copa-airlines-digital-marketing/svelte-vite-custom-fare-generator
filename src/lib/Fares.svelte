@@ -159,11 +159,35 @@ try {
 
 </script>
 
-
+<!--  PRINT FOR DEBUG QUERY
+<style>
+	section {
+	  margin-block: var(--size-7);
+	  padding: var(--size-7);
+	  color: var(--gray-0);
+	  background-color: var(--gray-10);
+	  border-radius: var(--radius-2);
+	  box-shadow: var(--shadow-1);
+	}
+  
+	pre {
+	  font-size: var(--font-size-3);
+	  margin-top: var(--size-3);
+	}
+  </style>
+{#each fares as fare}
+<section class="container">
+	<h4>Query Parameters for <span class="font-bold uppercase">{country}</span> in <span class="font-bold uppercase">{lang}</span></h4>
+	<pre class="max-w-prose text-wrap">
+	  {JSON.stringify({ fares}, null, 3)}
+	</pre>
+  </section>
+  {/each}
+-->
 <div class="container mx-auto">
 	{#if isLoading}
 	<ol class="grid justify-center gap-3" style="grid-template-columns: repeat(auto-fit, minmax(376px, 1fr))">
-	{#each Array(6) as _}
+			{#each Array(6) as _}
 		<div class="custom-fares h-full w-full max-w-[400px]">
 			<div
 				class="grid h-40 grid-cols-[8px_116px_auto_8px] grid-rows-[8px_auto_auto_8px] overflow-hidden rounded-2xl outline outline-1 outline-grey-300 animate-pulse">
@@ -176,14 +200,13 @@ try {
 				</div>
 			</div>
 		</div>
-	{/each}
+			{/each}
 	</ol>
 	{:else if error}
 		<p>{error}</p>
 	{:else if fares.length > 0}
 		<ol class="grid justify-center gap-3" style="grid-template-columns: repeat(auto-fit, minmax(376px, 1fr));">
 			{#each fares as fare}
-				{console.log(fare.origin)}
 				<li class="custom-fares h-full w-full max-w-[400px]">
 					<a class="grid grid-cols-[8px_116px_auto_8px] grid-rows-[8px_auto_auto_8px] overflow-hidden rounded-2xl outline outline-1 outline-grey-300 hover:outline-2 hover:outline-primary-ultralight focus:outline-2 focus:outline-primary-ultralight"
 						href="https://shopping.copaair.com/?roundtrip=true&adults=1&children=0&infants=0&sf={country}&langid={lang}&date1={fare.departure}&date2={fare.return}&promocode=&area1={fare.origin.iata_code}&area2={fare.destination.iata_code}&advanced_air_search=false&flexible_dates_v2=false&origin=EM"
