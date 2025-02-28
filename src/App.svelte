@@ -2,7 +2,7 @@
 
   import Fares from './lib/Fares.svelte'; 
 
-  let campaign = "ValentinesDay";
+  let campaign = "Destino del Mes - BOG";
   let storefronts:Record<string,string[]> = {
     'pa':["es", "en"], 
     'us':["es", "en","pt"], 
