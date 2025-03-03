@@ -236,7 +236,7 @@ try {
 								</span>
 							</span>
 							<span class="flex h-auto items-center gap-2">
-								<img src={calendarIcon} class="h-[10.3px] w-[11.6px]" alt="date" />
+								<img src="https://cm-marketing.directus.app/assets/5c8e2708-d6e2-4de0-ad47-60b94c7f512f" class="h-[10.3px] w-[11.6px]" alt="date" />
 								<span class="font-suisse font-normal text-d3 text-grey-600">
 									{lang === 'es'
 										? ' Ida y Vuelta'
