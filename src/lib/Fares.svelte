@@ -205,7 +205,7 @@ try {
 	{:else if error}
 		<p>{error}</p>
 	{:else if fares.length > 0}
-		<ol class="grid justify-center gap-3" style="grid-template-columns: repeat(auto-fit, minmax(376px, 1fr));">
+		<ol class="grid justify-center gap-3 pb-8" style="grid-template-columns: repeat(auto-fit, minmax(376px, 1fr));">
 			{#each fares as fare}
 				<li class="custom-fares h-full w-full max-w-[400px]">
 					<a class="grid grid-cols-[8px_116px_auto_8px] grid-rows-[8px_auto_auto_8px] overflow-hidden rounded-2xl outline outline-1 outline-grey-300 hover:outline-2 hover:outline-primary-ultralight focus:outline-2 focus:outline-primary-ultralight"
@@ -220,7 +220,7 @@ try {
 						<img
 						class="col-start-1 col-end-3 row-span-full h-full w-full object-cover"
 						loading="lazy"
-						src="https://www.copaair.com/promotions/airtrafix-pics/{fare.destination.iata_code}.jpg"
+						src="https://cm-marketing.directus.app/assets/{fare.destination.main_image}"
 						alt={fare.origin.translations[0]?.name}
 						/>
          
@@ -236,7 +236,7 @@ try {
 								</span>
 							</span>
 							<span class="flex h-auto items-center gap-2">
-								<img src={calendarIcon} class="h-[10.3px] w-[11.6px]" alt="date" />
+								<img src="https://cm-marketing.directus.app/assets/5c8e2708-d6e2-4de0-ad47-60b94c7f512f" class="h-[10.3px] w-[11.6px]" alt="date" />
 								<span class="font-suisse font-normal text-d3 text-grey-600">
 									{lang === 'es'
 										? ' Ida y Vuelta'
@@ -251,12 +251,13 @@ try {
 						</span>
 						<span class="col-start-3 col-end-3 row-start-3 row-end-3 mx-2 mt-2">
 							<span class="flex grid-rows-subgrid flex-col items-end">
+								<!--
 								{#if fare.price_before}
 									<span
 										class="font-normal text-d1 self-end font-suisse text-grey-600 line-through ">
 										{getCurrencyCode(country, fare.origin.country.currency_code)}&nbsp;{getExchangeRate(currency, fare.origin.country.currency_code, country, fare.price_before )}
 									</span>
-								{/if}
+								{/if}-->
 								<span class="gap-y-2">
 									<span class="font-suisse font-normal text-d3 text-grey-600 ">
 										{lang === 'es' ? 'desde' : lang === 'en' ? 'from' : 'de'}
