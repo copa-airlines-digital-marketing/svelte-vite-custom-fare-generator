@@ -269,9 +269,9 @@ try {
 								</span>
 							</span>
 							{#if fare.taxes}
-								<p class="font-suisse font-normal text-d3 text-grey-600 text-right s-TlaWMsF1F1vX">
+								<span class="font-suisse flex gap-1 justify-end font-normal text-d3 text-grey-600  s-TlaWMsF1F1vX">
 									<strong>{lang === 'es' ? 'Impuestos incluidos de' : lang === 'en' ? 'Taxes included' : 'Impostos incluídos em'}</strong> ${fare.taxes}
-								</p>
+								</span>
 							{/if}
 						</span>
 					</a>
