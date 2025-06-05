@@ -251,13 +251,13 @@ try {
 						</span>
 						<span class="col-start-3 col-end-3 row-start-3 row-end-3 mx-2 mt-2">
 							<span class="flex grid-rows-subgrid flex-col items-end">
-								<!--
+								
 								{#if fare.price_before}
 									<span
 										class="font-normal text-d1 self-end font-suisse text-grey-600 line-through ">
 										{getCurrencyCode(country, fare.origin.country.currency_code)}&nbsp;{getExchangeRate(currency, fare.origin.country.currency_code, country, fare.price_before )}
 									</span>
-								{/if}-->
+								{/if}
 								<span class="gap-y-2">
 									<span class="font-suisse font-normal text-d3 text-grey-600 ">
 										{lang === 'es' ? 'desde' : lang === 'en' ? 'from' : 'de'}
@@ -269,7 +269,7 @@ try {
 								</span>
 							</span>
 							{#if fare.taxes}
-								<p class="font-suisse font-normal text-d3 text-grey-600 s-TlaWMsF1F1vX">
+								<p class="font-suisse font-normal text-d3 text-grey-600 text-right s-TlaWMsF1F1vX">
 									<strong>{lang === 'es' ? 'Impuestos incluidos de' : lang === 'en' ? 'Taxes included' : 'Impostos incluídos em'}</strong> ${fare.taxes}
 								</p>
 							{/if}
