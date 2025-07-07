@@ -2,7 +2,7 @@
 
   import Fares from './lib/Fares.svelte'; 
 
-  let campaign = "viaja-mejor-3";
+  let campaign = "Mid-year-deals-2025";
   let storefronts:Record<string,string[]> = {
     'pa':["es", "en"], 
     'us':["es", "en","pt"], 
@@ -19,7 +19,7 @@
 
 {#each Object.keys(storefronts) as country }
   {#each storefronts[country] as lang}
-      <div data-country={country} data-lang={lang} class="hidden" > 
+      <div data-country={country} data-lang={lang} class="" > 
         <Fares {lang} {country} {campaign} currency="convert"  />
       </div>
   {/each}
