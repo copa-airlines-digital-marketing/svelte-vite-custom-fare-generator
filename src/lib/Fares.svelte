@@ -17,7 +17,7 @@
 	export let country;
 	export let campaign;
 	export let currency;
-	const validStorefronts = ['pa', 'us', 'br', 'ar', 'mx', 'ca', 'co', 'cl', 'cr', 'gs'];
+	const validStorefronts = ['pa', 'us', 'br', 'ar', 'mx', 'ca', 'co', 'cl', 'cr','ec', 'gs'];
 
 
 	const destinationQuery = [

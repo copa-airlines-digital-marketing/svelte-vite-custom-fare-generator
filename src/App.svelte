@@ -2,9 +2,10 @@
 
   import Fares from './lib/Fares.svelte'; 
 
-  let campaign = "ddm-chicago";
+  let campaign = "dom-nov";
   let storefronts:Record<string,string[]> = {
     'pa':["es", "en"], 
+    'ec':["es", "en","pt", "fr"], 
     'us':["es", "en","pt"], 
     'br':["en","pt"], 
     'ar':["es", "en","pt"], 
